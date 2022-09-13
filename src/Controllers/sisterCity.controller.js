@@ -12,8 +12,4 @@ const createSisterCity = async (req, res) => {
 
 }
 
-const updateSisterCity = async (req, res) => {
-
-}
-
-export { getAllSisterCities, getSingleSisterCity, createSisterCity, updateSisterCity }
+export { getAllSisterCities, getSingleSisterCity, createSisterCity }
