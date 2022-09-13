@@ -2,6 +2,10 @@
   "name": "valace-web-api",
   "version": "1.0.0",
   "main": "src/main.js",
+  "scripts": {
+    "dev": "nodemon src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "license": "MIT",
   "type": "module",
   "devDependencies": {
