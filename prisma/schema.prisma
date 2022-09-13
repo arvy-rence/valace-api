@@ -1,0 +1,51 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Events {
+  id                Int      @unique(map: "id") @default(autoincrement())
+  event_name        String   @db.VarChar(256)
+  event_description String   @db.Text
+  event_date        DateTime @db.DateTime(0)
+  event_location    String   @db.VarChar(256)
+  date_created      DateTime @default(now()) @db.DateTime(0)
+  date_updated      DateTime @default(now()) @db.DateTime(0)
+
+  @@map("events")
+}
+
+model Logs {
+  id              Int      @unique(map: "id") @default(autoincrement())
+  log_description String   @db.Text
+  log_date        DateTime @default(now()) @db.DateTime(0)
+
+  @@map("logs")
+}
+
+model NewsAnnouncements {
+  id               Int      @unique(map: "id") @default(autoincrement())
+  news_title       String   @db.VarChar(256)
+  news_description String   @db.Text
+  news_image_link  String   @db.VarChar(256)
+  date_created     DateTime @default(now()) @db.DateTime(0)
+  date_updated     DateTime @default(now()) @db.DateTime(0)
+
+  @@map("news_announcements")
+}
+
+model SisterCity {
+  id                  Int    @unique(map: "id") @default(autoincrement())
+  library_name        String @db.VarChar(256)
+  address             String @db.VarChar(512)
+  image_link          String @db.VarChar(512)
+  library_description String @db.Text
+
+  @@map("sister_city")
+}
