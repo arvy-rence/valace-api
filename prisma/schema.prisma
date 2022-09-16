@@ -15,6 +15,7 @@ model Events {
   event_description String   @db.Text
   event_date        DateTime @db.DateTime(0)
   event_location    String   @db.VarChar(256)
+  event_image_link  String   @db.VarChar(256)
   date_created      DateTime @default(now()) @db.DateTime(0)
   date_updated      DateTime @default(now()) @db.DateTime(0)
 
@@ -33,6 +34,7 @@ model NewsAnnouncements {
   id               Int      @unique(map: "id") @default(autoincrement())
   news_title       String   @db.VarChar(256)
   news_description String   @db.Text
+  news_date        DateTime @db.DateTime(0)
   news_image_link  String   @db.VarChar(256)
   date_created     DateTime @default(now()) @db.DateTime(0)
   date_updated     DateTime @default(now()) @db.DateTime(0)
