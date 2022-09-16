@@ -106,6 +106,7 @@ const updateEvent = async (req, res) => {
             event_date: new Date(eventDate),
             event_location: eventLocation,
             event_image_link: eventImageLink,
+            date_updated: new Date()
         }
     })
 
