@@ -1,2 +1,2 @@
-worker:npx generate prisma
-web:npm run start
+worker: npx generate prisma
+web: npm run start
