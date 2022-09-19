@@ -27,7 +27,7 @@ app.get("/api", (req, res) => {
         developers: [
             {
                 name: "Jon Arvy Enriquez",
-                email: "jonarvy11@gmail.com"
+                email: "asddsdas1@gmail.com"
             },
             {
                 name: "Clarence Rhey Salaveria",
