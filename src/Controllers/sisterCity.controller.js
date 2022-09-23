@@ -68,8 +68,8 @@ const updateSisterCity = async (req, res) => {
             library_name: libraryName,
             address: address,
             image_link: imageLink,
-            library_description: libraryDescription,
-            date_updated: new Date()
+            library_description: libraryDescription
+            // no date updated since there is no date_updated column on the database
         }
     })
 
