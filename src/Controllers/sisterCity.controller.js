@@ -53,4 +53,34 @@ const createSisterCity = async (req, res) => {
     await disconnect()
 }
 
-export {getAllSisterCities, getSingleSisterCity, createSisterCity}
+const updateSisterCity = async (req, res) => {
+    await connect()
+
+    const parsedId = parseInt(req.params.id)
+
+    const {libraryName, address, imageLink, libraryDescription} = req.body
+
+    const city = await client.SisterCity.update({
+        where: {
+            id: parsedId
+        },
+        data: {
+            library_name: libraryName,
+            address: address,
+            image_link: imageLink,
+            library_description: libraryDescription,
+            date_updated: new Date()
+        }
+    })
+
+    await loggerHelper(`Updated sister city ${libraryName} with id ${parsedId}`)
+
+    res.status(200).json({
+        message: "Sister City Record updated successfully",
+        cityDetails: city
+    })
+
+    await disconnect()
+}
+
+export {getAllSisterCities, getSingleSisterCity, createSisterCity, updateSisterCity}
