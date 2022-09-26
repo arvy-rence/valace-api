@@ -114,4 +114,19 @@ const updateNews = async (req, res) => {
     await disconnect()
 }
 
+export const getLatestNews = async (req, res) => {
+    await connect()
+
+    const latestNews = await client.NewsAnnouncements.findMany({
+        orderBy: {
+            news_date: "desc"
+        },
+        take: 3
+    })
+
+    res.status(200).json({
+        latestNews
+    })
+}
+
 export { getAllNews, getSingleNews, createNews, updateNews }

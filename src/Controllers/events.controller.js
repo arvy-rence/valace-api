@@ -120,5 +120,22 @@ const updateEvent = async (req, res) => {
     await disconnect()
 }
 
-export {getAllEvents, getSingleEvent, createEvent, updateEvent}
+const getLatestEvents = async (req, res) => {
+    await connect()
+
+    const events = await client.Events.findMany({
+        orderBy: {
+            event_date: "desc"
+        },
+        take: 5
+    })
+
+    res.status(200).json({
+        latestEvents: events
+    })
+
+    await disconnect()
+}
+
+export {getAllEvents, getSingleEvent, createEvent, updateEvent, getLatestEvents}
 

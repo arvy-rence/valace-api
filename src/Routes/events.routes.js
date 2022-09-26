@@ -1,7 +1,13 @@
 import express from 'express';
 
 // controllers
-import { createEvent, getAllEvents, getSingleEvent, updateEvent } from '../Controllers/events.controller.js';
+import {
+    createEvent,
+    getAllEvents,
+    getLatestEvents,
+    getSingleEvent,
+    updateEvent
+} from '../Controllers/events.controller.js';
 
 // router
 const router = express.Router();
@@ -11,6 +17,7 @@ const router = express.Router();
  */
 router.get('/', getAllEvents);
 router.get('/:id', getSingleEvent);
+router.get('/latestEvents', getLatestEvents);
 router.post('/createEvent', createEvent);
 router.put('/updateEvent/:id', updateEvent);
 
