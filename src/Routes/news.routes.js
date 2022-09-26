@@ -16,8 +16,8 @@ const router = express.Router();
  * ROOT URL: /api/news/
  */
 router.get('/', getAllNews);
+router.get('/latestNews', getLatestNews); // pattern matching (should not be placed below /:id)
 router.get('/:id', getSingleNews);
-router.get('/latestNews', getLatestNews);
 router.post('/createNews', createNews);
 router.put('/updateNews/:id', updateNews);
 

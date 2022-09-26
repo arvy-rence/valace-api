@@ -4,7 +4,7 @@ import express from 'express';
 import {
     createEvent,
     getAllEvents,
-    getLatestEvents,
+    getUpcomingEvents,
     getSingleEvent,
     updateEvent
 } from '../Controllers/events.controller.js';
@@ -16,8 +16,8 @@ const router = express.Router();
  * ROOT URL: /api/events/
  */
 router.get('/', getAllEvents);
+router.get('/upcomingEvents', getUpcomingEvents); // pattern matching (should not be placed below /:id)
 router.get('/:id', getSingleEvent);
-router.get('/latestEvents', getLatestEvents);
 router.post('/createEvent', createEvent);
 router.put('/updateEvent/:id', updateEvent);
 
