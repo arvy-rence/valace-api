@@ -123,15 +123,31 @@ const updateEvent = async (req, res) => {
 const getUpcomingEvents = async (req, res) => {
     await connect()
 
-    const events = await client.Events.findMany({
+    let eventsUTC8 = []
+
+    const eventsUTC = await client.Events.findMany({
         orderBy: {
             event_date: "asc"
         },
-        take: 3
+        take: 5
+    })
+
+    eventsUTC.forEach(event => {
+        // remove unneeded fields from the object
+        const optimizedEventDetails = keyExcluder(
+            event,
+            "date_created", "date_updated"
+        )
+
+        // push the new object and convert the date to UTC+8
+        eventsUTC8.push({
+            ...optimizedEventDetails,
+            event_date: new Date(event.event_date).toLocaleString()
+        })
     })
 
     res.status(200).json({
-        latestEvents: events
+        upcomingEvents: eventsUTC8
     })
 
     await disconnect()

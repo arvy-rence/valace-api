@@ -124,8 +124,24 @@ export const getLatestNews = async (req, res) => {
         take: 3
     })
 
+    let newsUTC8 = []
+
+    latestNews.forEach(news => {
+        // remove unneeded fields from the object
+        const optimizedNewsDetails = keyExcluder(
+            news,
+            "date_created", "date_updated"
+        )
+
+        // push the new object and convert the date to UTC+8
+        newsUTC8.push({
+            ...optimizedNewsDetails,
+            news_date: new Date(news.news_date).toLocaleString()
+        })
+    })
+
     res.status(200).json({
-        latestNews
+        latestNews: newsUTC8
     })
 }
 
