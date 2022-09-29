@@ -19,7 +19,8 @@ const getAllEvents = async (req, res) => {
         // push the new object and convert the date to UTC+8
         eventsUTC8.push({
             ...optimizedEventDetails,
-            event_date: new Date(event.event_date).toLocaleString()
+            event_date_start: new Date(event.event_date_start).toLocaleString(),
+            event_date_end: new Date(event.event_date_end).toLocaleString()
         })
     })
 
@@ -43,7 +44,8 @@ const getSingleEvent = async (req, res) => {
     // convert the date to UTC+8
     let eventUTC8 = {
         ...eventUTC,
-        event_date: new Date(eventUTC.event_date).toLocaleString()
+        event_date_start: new Date(eventUTC.event_date_start).toLocaleString(),
+        event_date_end: new Date(eventUTC.event_date_end).toLocaleString()
     }
 
     // exclude the fields that are not needed
@@ -67,13 +69,14 @@ const createEvent = async (req, res) => {
      * Notes about entering new data:
      * -> eventDate should follow the stringified format of MM-DD-YYYY, HH:mm:SS
      */
-    const {eventName, eventDescription, eventDate, eventLocation, eventImageLink} = req.body
+    const {eventName, eventDescription, eventDateStart, eventDateEnd, eventLocation, eventImageLink} = req.body
 
     const event = await client.Events.create({
         data: {
             event_name: eventName,
             event_description: eventDescription,
-            event_date: new Date(eventDate),
+            event_date_start: new Date(eventDateStart),
+            event_date_end: new Date(eventDateEnd),
             event_location: eventLocation,
             event_image_link: eventImageLink,
         }
@@ -94,7 +97,7 @@ const updateEvent = async (req, res) => {
 
     const parsedId = parseInt(req.params.id)
 
-    const {eventName, eventDescription, eventDate, eventLocation, eventImageLink} = req.body
+    const {eventName, eventDescription, eventDateStart, eventDateEnd, eventLocation, eventImageLink} = req.body
 
     const event = await client.Events.update({
         where: {
@@ -103,7 +106,8 @@ const updateEvent = async (req, res) => {
         data: {
             event_name: eventName,
             event_description: eventDescription,
-            event_date: new Date(eventDate),
+            event_date_start: new Date(eventDateStart),
+            event_date_end: new Date(eventDateEnd),
             event_location: eventLocation,
             event_image_link: eventImageLink,
             date_updated: new Date()

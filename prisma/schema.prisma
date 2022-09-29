@@ -13,7 +13,8 @@ model Events {
   id                Int      @unique(map: "id") @default(autoincrement())
   event_name        String   @db.VarChar(256)
   event_description String   @db.Text
-  event_date        DateTime @db.DateTime(0)
+  event_date_start  DateTime @db.DateTime(0)
+  event_date_end    DateTime @default(now()) @db.DateTime(0)
   event_location    String   @db.VarChar(256)
   event_image_link  String   @db.VarChar(256)
   date_created      DateTime @default(now()) @db.DateTime(0)
