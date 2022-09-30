@@ -131,7 +131,7 @@ const getUpcomingEvents = async (req, res) => {
 
     const eventsUTC = await client.Events.findMany({
         orderBy: {
-            event_date: "asc"
+            event_date_start: "asc"
         },
         take: 5
     })
@@ -146,7 +146,7 @@ const getUpcomingEvents = async (req, res) => {
         // push the new object and convert the date to UTC+8
         eventsUTC8.push({
             ...optimizedEventDetails,
-            event_date: new Date(event.event_date).toLocaleString()
+            event_date_start: new Date(event.event_date_start).toLocaleString()
         })
     })
 
