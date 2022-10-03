@@ -20,7 +20,8 @@ const getAllEvents = async (req, res) => {
         eventsUTC8.push({
             ...optimizedEventDetails,
             event_date_start: new Date(event.event_date_start).toLocaleString(),
-            event_date_end: new Date(event.event_date_end).toLocaleString()
+            event_date_end: new Date(event.event_date_end).toLocaleString(),
+            event_month: new Date(event.event_date_start).getMonth()+1
         })
     })
 
@@ -45,7 +46,8 @@ const getSingleEvent = async (req, res) => {
     let eventUTC8 = {
         ...eventUTC,
         event_date_start: new Date(eventUTC.event_date_start).toLocaleString(),
-        event_date_end: new Date(eventUTC.event_date_end).toLocaleString()
+        event_date_end: new Date(eventUTC.event_date_end).toLocaleString(),
+        event_month: new Date(eventUTC.event_date_start).getMonth()
     }
 
     // exclude the fields that are not needed
@@ -132,6 +134,11 @@ const getUpcomingEvents = async (req, res) => {
     const eventsUTC = await client.Events.findMany({
         orderBy: {
             event_date_start: "asc"
+        },
+        where: {
+            event_date_start: {
+                gte: new Date()
+            }
         },
         take: 5
     })
