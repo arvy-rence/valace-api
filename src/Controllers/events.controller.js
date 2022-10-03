@@ -165,4 +165,3 @@ const getUpcomingEvents = async (req, res) => {
 }
 
 export {getAllEvents, getSingleEvent, createEvent, updateEvent, getUpcomingEvents}
-
