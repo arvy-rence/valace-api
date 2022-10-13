@@ -1,5 +1,11 @@
 import { connect, client, disconnect } from "../Utils/prismaHandler.js";
 
+/**
+ * Fetches all logs from the database
+ * @param req contains request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getAllLogs = async (req, res) => {
     await connect()
 

@@ -1,6 +1,12 @@
 import {connect, client, disconnect} from "../Utils/prismaHandler.js";
 import {loggerHelper} from "../Utils/loggerHelper.js";
 
+/**
+ * Fetches all sister cities from the database
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getAllSisterCities = async (req, res) => {
     await connect()
 
@@ -13,6 +19,13 @@ const getAllSisterCities = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Fetches a single sister city based on the `id` parameter on the URL
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getSingleSisterCity = async (req, res) => {
     await connect()
 
@@ -29,6 +42,13 @@ const getSingleSisterCity = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Creates a new sister city record in the database and returns the newly created record
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const createSisterCity = async (req, res) => {
     await connect()
 
@@ -53,6 +73,13 @@ const createSisterCity = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Updates a sister city record based on the `id` parameter on the URL
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const updateSisterCity = async (req, res) => {
     await connect()
 

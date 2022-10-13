@@ -2,6 +2,12 @@ import { connect, client, disconnect } from "../Utils/prismaHandler.js";
 import {keyExcluder} from "../Utils/keyExcluder.js";
 import {loggerHelper} from "../Utils/loggerHelper.js";
 
+/**
+ * Fetches all news articles from the database
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getAllNews = async (req, res) => {
     await connect()
 
@@ -30,6 +36,12 @@ const getAllNews = async (req, res) => {
     await disconnect()
 }
 
+/**
+ * Fetch a single news article based on the `id` parameter on the URL
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getSingleNews = async (req, res) => {
     await connect()
 
@@ -56,6 +68,13 @@ const getSingleNews = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Creates a new news article in the database and returns the newly created news article if successful
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const createNews = async (req, res) => {
     await connect()
 
@@ -84,6 +103,13 @@ const createNews = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Updates a news article based on the `id` parameter on the URL
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const updateNews = async (req, res) => {
     await connect()
 
@@ -114,6 +140,13 @@ const updateNews = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Fetches the 3 latest news articles from the database
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 export const getLatestNews = async (req, res) => {
     await connect()
 

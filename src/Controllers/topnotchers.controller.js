@@ -2,6 +2,12 @@ import {client, disconnect, connect} from "../Utils/prismaHandler.js";
 import {loggerHelper} from "../Utils/loggerHelper.js";
 import {keyExcluder} from "../Utils/keyExcluder.js";
 
+/**
+ * Fetches all topnotchers in the database
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getAllTopnotchers = async (req, res) => {
     await connect()
 
@@ -23,6 +29,13 @@ const getAllTopnotchers = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Fetches the three latest topnotchers based on the date uploaded
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const getThreeLatestTopnotchers = async (req, res) => {
     await connect()
 
@@ -43,12 +56,19 @@ const getThreeLatestTopnotchers = async (req, res) => {
     })
 
     res.status(200).json({
-        recentTopnotchers: topnotchers
+        recentTopnotchers: optimizedTopnotchers
     })
 
     await disconnect()
 }
 
+
+/**
+ * Creates a topnotcher record in the database and returns it if it is successful
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const createTopnotcher = async (req, res) => {
     await connect()
 
@@ -73,6 +93,13 @@ const createTopnotcher = async (req, res) => {
     await disconnect()
 }
 
+
+/**
+ * Updates a topnotcher record based on the `id` parameter on the URL
+ * @param req contains the request body
+ * @param res sends the response back to the client
+ * @returns {Promise<void>}
+ */
 const updateTopnotcher = async (req, res) => {
     await connect()
 
