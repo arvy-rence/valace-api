@@ -6,6 +6,10 @@ import {eventsRoutes} from "./Routes/events.routes.js";
 import {logsRoutes} from "./Routes/logs.routes.js";
 import {newsRoutes} from "./Routes/news.routes.js";
 import {sisterCityRoutes} from "./Routes/sisterCity.routes.js";
+import {topnotchersRoutes} from "./Routes/topnotchers.routes.js";
+
+// utils
+import {wake} from "./Utils/wake.js";
 
 // initialize app
 const app = express()
@@ -13,6 +17,9 @@ const app = express()
 // use middleware
 app.use(cors())
 app.use(express.json())
+
+// wake the api
+wake()
 
 app.listen(process.env.PORT || 8090, () => {
     console.log(`Server running on port ${process.env.PORT || 8090}`)
@@ -41,3 +48,4 @@ app.use("/api/events", eventsRoutes)
 app.use("/api/logs", logsRoutes)
 app.use("/api/news", newsRoutes)
 app.use("/api/sisterCity", sisterCityRoutes)
+app.use("/api/topnotchers", topnotchersRoutes)
